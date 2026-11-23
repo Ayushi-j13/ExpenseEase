@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-const Expense = require("../models/Expense");
+const Expense = require("../models/expense");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // Protect every expense route
