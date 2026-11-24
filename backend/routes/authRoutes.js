@@ -41,7 +41,7 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Registration successful",
       user: {
         id: user._id,
@@ -49,8 +49,11 @@ router.post("/register", async (req, res) => {
         email: user.email,
       },
     });
+
   } catch (error) {
-    res.status(500).json({
+    console.error("Registration error:", error);
+
+    return res.status(500).json({
       message: "Registration failed",
     });
   }
@@ -94,7 +97,7 @@ router.post("/login", async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.json({
+    return res.json({
       message: "Login successful",
       token,
       user: {
@@ -103,12 +106,15 @@ router.post("/login", async (req, res) => {
         email: user.email,
       },
     });
+
   } catch (error) {
-  console.error("Registration error:", error);
-  res.status(500).json({
-    message: "Registration failed",
-  });
-}
+    console.error("Login error:", error);
+
+    return res.status(500).json({
+      message: "Login failed",
+    });
+  }
 });
 
 module.exports = router;
+
