@@ -104,10 +104,11 @@ router.post("/login", async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Login failed",
-    });
-  }
+  console.error("Registration error:", error);
+  res.status(500).json({
+    message: "Registration failed",
+  });
+}
 });
 
 module.exports = router;
